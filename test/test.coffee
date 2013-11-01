@@ -1,28 +1,42 @@
 assert = require 'assert'
+float = require 'float'
 b = require '../'
 
 describe "Convert", ->
+	describe "string", ->
+		it "to bytes and back", ->
+			a = b.stringToBytes "mrdka"
+			assert.strictEqual b.bytesToString(a), "mrdka"
 
-	it "string to bytes and back", ->
-		a = b.stringToBytes "mrdka"
-		assert.strictEqual b.bytesToString(a), "mrdka"
+	describe "long", ->
+		it "to bytes and back", ->
+			a = b.longToBytes 10
+			(b.bytesToLong a).toString()
+			assert.strictEqual (b.bytesToLong a).toString(), "10"
 
-	it "long to bytes and back", ->
-		a = b.longToBytes 10
-		(b.bytesToLong a).toString()
-		assert.strictEqual (b.bytesToLong a).toString(), "10"
+		it "string to bytes and back", ->
+			a = b.longToBytes "9223372036854775807"
+			assert.strictEqual (b.bytesToLong a).toString(), "9223372036854775807"
 
-	it "long string to bytes and back", ->
-		a = b.longToBytes "9223372036854775807"
-		assert.strictEqual (b.bytesToLong a).toString(), "9223372036854775807"
+	describe "string", ->
+		it "string to bytes and back", ->
+			a = b.intToBytes 10
+			assert.strictEqual 10, b.bytesToInt a
 
-	it "int string to bytes and back", ->
-		a = b.intToBytes 10
-		assert.strictEqual 10, b.bytesToInt a
+		it "string to bytes and back", ->
+			a = b.intToBytes "10"
+			assert.strictEqual 10,  b.bytesToInt a
 
-	it "int string to bytes and back", ->
-		a = b.intToBytes "10"
-		assert.strictEqual 10,  b.bytesToInt a
+	describe "float", ->
+
+		it "to bytes and back", ->
+			a = b.floatToBytes 1.234
+			assert.ok float.equals(1.2341,  b.bytesToFloat a)
+
+		it "string to bytes and back", ->
+			a = b.floatToBytes "1.234"
+			assert.ok float.equals(1.2341,  b.bytesToFloat a)
+
 
 describe "Join bytes", ->
 

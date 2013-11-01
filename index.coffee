@@ -1,5 +1,7 @@
 Long = require 'long'
 
+isString = (o) -> o.charAt
+
 exports.join = (w,e) ->
 	size = 0
 	size += b.length for b in arguments
@@ -18,7 +20,7 @@ exports.bytesToString = (o) ->
 	o.toString()
 
 exports.longToBytes = (o) ->
-	if o.charAt
+	if isString o
 		l = Long.fromString o, yes
 	else
 		l = Long.fromInt o, yes
@@ -42,3 +44,15 @@ exports.intToBytes = (o) ->
 
 exports.bytesToInt = (b) ->
 	b.readInt32BE 0
+
+exports.floatToBytes = (o) ->
+	o = parseFloat(o) if isString o
+
+	b = new Buffer 4
+	b.writeFloatBE o, 0
+	b
+
+exports.bytesToFloat = (b) ->
+	b.readFloatBE 0
+
+

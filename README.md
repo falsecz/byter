@@ -28,6 +28,13 @@ byter.intToBytes 10
 byter.intToBytes "10"
 byter.bytesToInt bytes
 ```
+#### Float ####
+```coffee-script
+byter.floatToBytes 1.234
+byter.floatToBytes "1.234"
+byter.bytesToFloat bytes
+```
+
 
 #### Join bytes ####
 ```coffee-script
