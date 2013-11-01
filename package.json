@@ -1,0 +1,27 @@
+{
+  "name": "byter",
+  "version": "1.0.0",
+  "description": "nodejs toBytes fromBytes conversion",
+  "main": "index.coffee",
+  "keywords": ["buffer", "byte", "hbase", "long"],
+  "scripts": {
+    "test": "node_modules/.bin/mocha --compilers coffee:coffee-script --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/falsecz/byter.git"
+  },
+  "author": "bender@false.cz",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/falsecz/byter/issues"
+  },
+  "dependencies": {
+    "long": "~1.1.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.13.0",
+    "coffee-script": "*"
+  }
+
+}
