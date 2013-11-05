@@ -20,10 +20,8 @@ exports.bytesToString = (o) ->
 	o.toString()
 
 exports.longToBytes = (o) ->
-	if isString o
-		l = Long.fromString o, yes
-	else
-		l = Long.fromInt o, yes
+	o = "#{o}" unless isString o
+	l = Long.fromString o, yes
 
 	b = new Buffer 8
 	b.writeInt32BE l.high, 0
@@ -33,7 +31,7 @@ exports.longToBytes = (o) ->
 exports.bytesToLong = (o) ->
 	high = o.readInt32BE 0
 	low = o.readInt32BE 4
-	x = Long.fromBits low, high, no
+	x = Long.fromBits low, high, yes
 	x
 
 

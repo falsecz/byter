@@ -11,8 +11,13 @@ describe "Convert", ->
 	describe "long", ->
 		it "to bytes and back", ->
 			a = b.longToBytes 10
-			(b.bytesToLong a).toString()
 			assert.strictEqual (b.bytesToLong a).toString(), "10"
+
+
+		it "int to bytes and back", ->
+			a = b.longToBytes 1370969615000
+			assert.strictEqual (b.bytesToLong a).toString(), "1370969615000"
+
 
 		it "string to bytes and back", ->
 			a = b.longToBytes "9223372036854775807"
