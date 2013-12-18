@@ -1,5 +1,7 @@
 Long = require 'long'
 
+phoenixDataTypes = require './lib/phoenixDataTypes'
+
 isString = (o) -> o.charAt
 
 exports.join = (w,e) ->
@@ -53,4 +55,4 @@ exports.floatToBytes = (o) ->
 exports.bytesToFloat = (b) ->
 	b.readFloatBE 0
 
-
+exports.phoenix = phoenixDataTypes
