@@ -1,3 +1,9 @@
+byter = require '../'
+
+Buffer.prototype.toByteArray = () ->
+  return Array.prototype.slice.call this, 0
+
+
 
 intSize = 4
 doubleSize = 8
@@ -48,3 +54,24 @@ exports.toPDataDouble = (num) ->
 
 	maxIndex-- while ++b[maxIndex] is 256 # buffer overflow
 	return b
+
+
+exports.unsgnedIntToBytes = (integer) ->
+	return (exports.toPDataUnsignedInt integer).toByteArray()
+
+exports.intToBytes = (integer) ->
+	return (exports.toPDataSignedInt integer).toByteArray()
+
+#alias for intToBytes
+exports.integerToBytes = (integer) ->
+	return intToBytes integer
+
+exports.dateToBytes = (date) ->
+	return (byter.longToBytes date).toByteArray()
+
+exports.longToBytes = (long) ->
+	return (byter.longToBytes long).toByteArray()
+
+# unsigned and signed int encoding are same
+exports.unsignedLongToBytes = (long) ->
+	return (byter.longToBytes long).toByteArray()

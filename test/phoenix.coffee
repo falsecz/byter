@@ -64,3 +64,27 @@ describe "Phoenix data types", ->
 		it "negative int", ->
 			a = b.phoenix.toPDataSignedInt -33557575
 			assert.equal "<Buffer 7d ff f3 b9>", a.inspect()
+
+
+	describe "toBytes", ->
+		it "int", ->
+			assert.deepEqual b.phoenix.intToBytes(10), [128, 0, 0, 10]
+
+		it "negative int", ->
+			assert.deepEqual b.phoenix.intToBytes(-10), [127,255,255,246]
+
+		it "unsigned int", ->
+			assert.deepEqual b.phoenix.unsgnedIntToBytes(10), [0,0,0,10]
+
+		it "date", ->
+			assert.deepEqual b.phoenix.dateToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
+
+		it "long", ->
+			assert.deepEqual b.phoenix.longToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
+
+		it "negative long", ->
+			assert.deepEqual b.phoenix.longToBytes("-1387547769000"), [255,255,254,188,239,181,71,88]
+
+		it "unsigned_long", ->
+			assert.deepEqual b.phoenix.unsignedLongToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
+
