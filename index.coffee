@@ -55,4 +55,16 @@ exports.floatToBytes = (o) ->
 exports.bytesToFloat = (b) ->
 	b.readFloatBE 0
 
+exports.boolToBytes = (o) ->
+	b = new Buffer 1
+	if o and o != "false"
+		b[0] = -1
+	else
+		b[0] = 0
+	return b
+
+exports.bytesToBool = (b) ->
+	return false if b[0] is 0
+	true
+
 exports.phoenix = phoenixDataTypes
