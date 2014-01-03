@@ -42,6 +42,14 @@ describe "Convert", ->
 			a = b.floatToBytes "1.234"
 			assert.ok float.equals(1.2341,  b.bytesToFloat a)
 
+	describe "bool", ->
+		it "bool to bytes and back", ->
+			assert.strictEqual true, b.bytesToBool b.boolToBytes true
+			assert.strictEqual false, b.bytesToBool b.boolToBytes false
+
+		it "bool as string to bytes and back", ->
+			assert.strictEqual true, b.bytesToBool b.boolToBytes "true"
+			assert.strictEqual false, b.bytesToBool b.boolToBytes "false"
 
 describe "Join bytes", ->
 
