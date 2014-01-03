@@ -74,7 +74,7 @@ describe "Phoenix data types", ->
 			assert.deepEqual b.phoenix.intToBytes(-10), [127,255,255,246]
 
 		it "unsigned int", ->
-			assert.deepEqual b.phoenix.unsgnedIntToBytes(10), [0,0,0,10]
+			assert.deepEqual b.phoenix.unsignedIntToBytes(10), [0,0,0,10]
 
 		it "date", ->
 			assert.deepEqual b.phoenix.dateToBytes("1387547769000"), [0,0,1,67,16,74,184,168]

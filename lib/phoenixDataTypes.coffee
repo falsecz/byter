@@ -56,7 +56,7 @@ exports.toPDataDouble = (num) ->
 	return b
 
 
-exports.unsgnedIntToBytes = (integer) ->
+exports.unsignedIntToBytes = (integer) ->
 	return (exports.toPDataUnsignedInt integer).toByteArray()
 
 exports.intToBytes = (integer) ->

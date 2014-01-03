@@ -47,7 +47,7 @@ Support for [Hbase Phoenix](https://github.com/forcedotcom/phoenix "HBase Phoeni
 -----
 ```coffee-script
 a = byter.phoenix.intToBytes 10
-a = byter.phoenix.unsgnedIntToBytes 10
+a = byter.phoenix.unsignedIntToBytes 10
 a = byter.phoenix.longToBytes "-1387547769370"
 a = byter.phoenix.dateToBytes "1387547769370" #micro timestamp
 a = byter.phoenix.unsignedLongToBytes "1387547769370"
