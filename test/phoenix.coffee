@@ -77,13 +77,13 @@ describe "Phoenix data types", ->
 			assert.deepEqual b.phoenix.unsgnedIntToBytes(10), [0,0,0,10]
 
 		it "date", ->
-			assert.deepEqual b.phoenix.dateToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
+			assert.deepEqual b.phoenix.dateToBytes("1387547769000"), [128,0,1,67,16,74,184,168]
 
 		it "long", ->
-			assert.deepEqual b.phoenix.longToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
+			assert.deepEqual b.phoenix.longToBytes("1387547769000"), [128,0,1,67,16,74,184,168]
 
 		it "negative long", ->
-			assert.deepEqual b.phoenix.longToBytes("-1387547769000"), [255,255,254,188,239,181,71,88]
+			assert.deepEqual b.phoenix.longToBytes("-1387547769000"), [127,255,254,188,239,181,71,88]
 
 		it "unsigned_long", ->
 			assert.deepEqual b.phoenix.unsignedLongToBytes("1387547769000"), [0,0,1,67,16,74,184,168]

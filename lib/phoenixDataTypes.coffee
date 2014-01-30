@@ -1,4 +1,5 @@
 byter = require '../'
+Long = require 'long'
 
 Buffer.prototype.toByteArray = () ->
   return Array.prototype.slice.call this, 0
@@ -55,6 +56,18 @@ exports.toPDataDouble = (num) ->
 	maxIndex-- while ++b[maxIndex] is 256 # buffer overflow
 	return b
 
+exports.toPDataLong = (o) ->
+	o = "#{o}" unless o.charAt
+	l = Long.fromString o, yes
+
+	b = new Buffer 8
+	b.writeInt32BE l.high, 0
+	b.writeInt32BE l.low, 4
+	if l.isNegative()
+		b[0] ^= 128
+	else
+		b[0] |= 128
+	b
 
 exports.unsgnedIntToBytes = (integer) ->
 	return (exports.toPDataUnsignedInt integer).toByteArray()
@@ -67,10 +80,10 @@ exports.integerToBytes = (integer) ->
 	return intToBytes integer
 
 exports.dateToBytes = (date) ->
-	return (byter.longToBytes date).toByteArray()
+	return (exports.toPDataLong date).toByteArray()
 
 exports.longToBytes = (long) ->
-	return (byter.longToBytes long).toByteArray()
+	return (exports.toPDataLong long).toByteArray()
 
 # unsigned and signed int encoding are same
 exports.unsignedLongToBytes = (long) ->
