@@ -43,7 +43,7 @@ aa = byter.intToBytes "10"
 byter.join a, aa, ...
 ```
 
-Support for [Hbase Phoenix](https://github.com/forcedotcom/phoenix "HBase Phoenix") data types
+Support for [Hbase Phoenix](https://github.com/forcedotcom/phoenix "HBase Phoenix") v 3.0.0 data types
 -----
 ```coffee-script
 a = byter.phoenix.intToBytes 10
