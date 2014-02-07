@@ -69,6 +69,33 @@ exports.toPDataLong = (o) ->
 		b[0] |= 128
 	b
 
+exports.pDataBytesToInt = (bytes) ->
+	if bytes[0] < 128 # negative number
+		for value, index in bytes
+			bytes[index] = bytes[index] ^ 255
+		bytes[0] &= 127	# sign bit
+		console.log bytes
+		return -1 * (bytes.readInt32BE 0) - 1 # -1 for reverted numbers
+
+	bytes[0] &= 127
+	return bytes.readInt32BE 0
+
+exports.pDataBytesToLong = (bytes) ->
+	if bytes[0] < 128 # negative number
+		for value, index in bytes
+			bytes[index] = bytes[index] ^ 255
+		bytes[0] &= 127	# sign bit
+		high = bytes.readInt32BE 0
+		low = bytes.readInt32BE 4
+		x = Long.fromBits low + 1, high, yes
+		return "-" + x.toString()
+
+	bytes[0] &= 127
+	high = bytes.readInt32BE 0
+	low = bytes.readInt32BE 4
+	x = Long.fromBits low, high, yes
+	return x.toString()
+
 exports.unsgnedIntToBytes = (integer) ->
 	return (exports.toPDataUnsignedInt integer).toByteArray()
 
@@ -84,6 +111,12 @@ exports.dateToBytes = (date) ->
 
 exports.longToBytes = (long) ->
 	return (exports.toPDataLong long).toByteArray()
+
+exports.bytesToInt = (bytes) ->
+	return exports.pDataBytesToInt bytes
+
+exports.bytesToLong = (bytes) ->
+	return exports.pDataBytesToLong bytes
 
 # unsigned and signed int encoding are same
 exports.unsignedLongToBytes = (long) ->

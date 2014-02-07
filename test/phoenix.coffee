@@ -88,3 +88,22 @@ describe "Phoenix data types", ->
 		it "unsigned_long", ->
 			assert.deepEqual b.phoenix.unsignedLongToBytes("1387547769000"), [0,0,1,67,16,74,184,168]
 
+
+	describe "two way conversion", ->
+		it "int 1", ->
+			assert.equal 10, b.phoenix.bytesToInt b.phoenix.toPDataSignedInt 10
+
+		it "int 2", ->
+			assert.equal -23123, b.phoenix.bytesToInt b.phoenix.toPDataSignedInt -23123
+
+		it "int 3", ->
+			assert.equal 2147483647, b.phoenix.bytesToInt b.phoenix.toPDataSignedInt 2147483647
+
+		it "long 1", ->
+			assert.equal "10", b.phoenix.bytesToLong b.phoenix.toPDataLong "10"
+
+		it "long 1", ->
+			assert.equal "-13213", b.phoenix.bytesToLong b.phoenix.toPDataLong "-13213"
+
+		it "long 1", ->
+			assert.equal "9223372036854775807", b.phoenix.bytesToLong b.phoenix.toPDataLong "9223372036854775807"

@@ -1,6 +1,6 @@
 {
   "name": "byter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "nodejs toBytes fromBytes conversion",
   "main": "index.coffee",
   "keywords": [
