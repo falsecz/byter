@@ -16,7 +16,8 @@ exports.join = (w,e) ->
 	buf
 
 exports.stringToBytes = (o) ->
-	new Buffer o?.toString?() or null
+	return null unless o?
+	new Buffer o?.toString?()
 
 exports.bytesToString = (o) ->
 	o.toString()
