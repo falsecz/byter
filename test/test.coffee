@@ -7,6 +7,9 @@ describe "Convert", ->
 		it "to bytes and back", ->
 			a = b.stringToBytes "mrdka"
 			assert.strictEqual b.bytesToString(a), "mrdka"
+		it "to bytes and back", ->
+			a = b.stringToBytes 1413375639
+			assert.strictEqual b.bytesToString(a), "1413375639"
 
 	describe "long", ->
 		it "to bytes and back", ->

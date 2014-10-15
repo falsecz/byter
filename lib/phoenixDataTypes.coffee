@@ -74,7 +74,7 @@ exports.pDataBytesToInt = (bytes) ->
 		for value, index in bytes
 			bytes[index] = bytes[index] ^ 255
 		bytes[0] &= 127	# sign bit
-		console.log bytes
+		# console.log bytes
 		return -1 * (bytes.readInt32BE 0) - 1 # -1 for reverted numbers
 
 	bytes[0] &= 127
@@ -96,8 +96,12 @@ exports.pDataBytesToLong = (bytes) ->
 	x = Long.fromBits low, high, yes
 	return x.toString()
 
-exports.unsgnedIntToBytes = (integer) ->
+
+exports.unsignedIntToBytes = (integer) ->
 	return (exports.toPDataUnsignedInt integer).toByteArray()
+
+# todo remove in next major
+exports.unsgnedIntToBytes = exports.unsignedIntToBytes
 
 exports.intToBytes = (integer) ->
 	return (exports.toPDataSignedInt integer).toByteArray()

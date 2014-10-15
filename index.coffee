@@ -16,7 +16,7 @@ exports.join = (w,e) ->
 	buf
 
 exports.stringToBytes = (o) ->
-	new Buffer o
+	new Buffer o?.toString?()
 
 exports.bytesToString = (o) ->
 	o.toString()
